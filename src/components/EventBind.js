@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class componentName extends Component {
 
     constructor(props) {
-        super(props)
+        super()
 
         this.state = {
             message: 'Hello! This is event binding in React'
