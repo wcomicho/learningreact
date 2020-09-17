@@ -20,6 +20,16 @@ import NameList from './components/NameList';
 import IndexKey from './components/IndexKey';
 import Form from './components/Form';
 import ParentComp from './components/ParentComp';
+import RefDemo from './components/RefDemo';
+import Input from './components/Input';
+import FocusInput from './components/FocusInput';
+import FRParentInput from './components/FRParentInput';
+import PortalDemo from './components/PortalDemo';
+import Hero from './components/Hero';
+import ErrorBoundary from './components/ErrorBoundary';
+import ClickCounter from './components/ClickCounter';
+import HoverCounter from './components/HoverCounter';
+
 
 function App() {
   return (
@@ -147,7 +157,7 @@ function App() {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="9">
-               Pure Component
+               Pure Component and using Memo for function component
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey="9">
@@ -157,10 +167,85 @@ function App() {
           </Accordion.Collapse>
         </Card>
 
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="10">
+               Ref demo
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="10">
+            <Card.Body>
+            <RefDemo/>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="11">
+               Input Ref Class
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="11">
+            <Card.Body>
+            <FocusInput/>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="12">
+               Ref forwarding
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="12">
+            <Card.Body>
+              <FRParentInput/>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+        
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="13">
+              Error Boundary
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="13">
+            <Card.Body>
+                <ErrorBoundary>
+                <Hero heroName="Batman"/>
+                </ErrorBoundary>
+                <ErrorBoundary> 
+                <Hero heroName="Superman"/>
+                </ErrorBoundary>
+                <ErrorBoundary>
+                <Hero heroName="Wonder Woman"/>
+                </ErrorBoundary>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="14">
+              Higher Order Components
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="14">
+            <Card.Body>
+                
+                <ClickCounter name='User Name'/>
+                <HoverCounter/>
+
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
 
       </Accordion>
 
-
+      <PortalDemo/>
     </div>
   );
 }
