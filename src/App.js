@@ -29,6 +29,10 @@ import Hero from './components/Hero';
 import ErrorBoundary from './components/ErrorBoundary';
 import ClickCounter from './components/ClickCounter';
 import HoverCounter from './components/HoverCounter';
+import ClickCounterTwo from './components/ClickCounterTwo';
+import HoverCounter2 from './components/HoverCounter2';
+import User from './components/User';
+import CounterTwo from './components/CounterTwo';
 
 
 function App() {
@@ -243,6 +247,36 @@ function App() {
           </Accordion.Collapse>
         </Card>
 
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="15">
+              Render Props
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="15">
+            <Card.Body>
+                
+                <User render={(isLoggedIn) => isLoggedIn ? 'Hello Will' : 'Hello guest'}/>
+
+                <CounterTwo>
+                  {
+                    (count, incrementCount)=>(
+                      <ClickCounterTwo count={count} incrementCount={incrementCount}/>
+                    )
+                  }
+                </CounterTwo>
+
+                <CounterTwo>
+                  {
+                    (count, incrementCount)=>(
+                      <HoverCounter2 count={count} incrementCount={incrementCount}/>
+                    )
+                  }
+                </CounterTwo>
+
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
       </Accordion>
 
       <PortalDemo/>
