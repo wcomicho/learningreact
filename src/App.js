@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useReducer} from 'react';
 
 import Button from 'react-bootstrap/Button'
 import Accordion from 'react-bootstrap/Accordion'
@@ -33,13 +33,54 @@ import ClickCounterTwo from './components/ClickCounterTwo';
 import HoverCounter2 from './components/HoverCounter2';
 import User from './components/User';
 import CounterTwo from './components/CounterTwo';
+import { UserProvider } from './components/userContext';
+import Consumer from './components/Consumer';
+import PostList from './components/PostList';
+
+/*Use of state hooks*/
+import ClassCounter from './components/statehooks/ClassCounter';
+import HookCounter from './components/statehooks/HookCounter';
+import HookCounterTwo from './components/statehooks/HookCounterTwo';
+import HookCounterThree from './components/statehooks/HookCounterThree';
+import HookCounterFour from './components/statehooks/HookCounterFour'
+
+/*Data Fetching*/
+import DataFetching1 from './components/datafetching/DataFetching1.js';
+import DataFetching2 from './components/datafetching/DataFetching2.js';
+
+/*Use Effect*/
+import UseEffectOne from './components/effecthooks/UseEffectOne';
+import HookMouse from './components/effecthooks/UseEffectMouse';
+
+
+/*Reducer and Context*/
+import RedComponent1 from './components/reducecontext/RedComponent1';
+import RedComponent2 from './components/reducecontext/RedComponent2';
+
+export const CountContext = React.createContext();
+
+const initialState = 0
+const reducer = (state, action) =>{
+  switch(action){
+      case 'increment':
+        return state + 1
+      case 'decrement':
+        return state - 1
+      case 'reset':
+        return initialState
+      default:
+        return state
+  }
+}
 
 
 function App() {
+  const [count, dispatch] = useReducer(reducer, initialState);
+
   return (
     <div className="App">
       <Accordion defaultActiveKey="0">
-        
+
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="0">
@@ -49,11 +90,11 @@ function App() {
 
           <Accordion.Collapse eventKey="0">
             <Card.Body>
-              <Hello/>
+              <Hello />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
-        
+
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="1">
@@ -63,11 +104,11 @@ function App() {
 
           <Accordion.Collapse eventKey="1">
             <Card.Body>
-              <Counter iniCount="5"/>
+              <Counter iniCount="5" />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
-        
+
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="2">
@@ -77,11 +118,11 @@ function App() {
 
           <Accordion.Collapse eventKey="2">
             <Card.Body>
-              <Welcome/>
+              <Welcome />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
-        
+
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="3">
@@ -91,13 +132,13 @@ function App() {
 
           <Accordion.Collapse eventKey="3">
             <Card.Body>
-              <Greet name="Bruce" heroName="Batman"/>
-              <Greet name="Clark" heroName="Superman"/>
-              <Greet name="Diana" heroName="Wonder Woman"/>
+              <Greet name="Bruce" heroName="Batman" />
+              <Greet name="Clark" heroName="Superman" />
+              <Greet name="Diana" heroName="Wonder Woman" />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
-      
+
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="4">
@@ -106,7 +147,7 @@ function App() {
           </Card.Header>
 
           <Accordion.Collapse eventKey="4">
-            <Card.Body><EventBind/></Card.Body>
+            <Card.Body><EventBind /></Card.Body>
           </Accordion.Collapse>
         </Card>
 
@@ -118,7 +159,7 @@ function App() {
           </Card.Header>
 
           <Accordion.Collapse eventKey="5">
-            <Card.Body><NameList/></Card.Body>
+            <Card.Body><NameList /></Card.Body>
           </Accordion.Collapse>
         </Card>
 
@@ -129,7 +170,7 @@ function App() {
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey="6">
-            <Card.Body><ParentComponent/></Card.Body>
+            <Card.Body><ParentComponent /></Card.Body>
           </Accordion.Collapse>
         </Card>
 
@@ -141,19 +182,19 @@ function App() {
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey="7">
-            <Card.Body><IndexKey/></Card.Body>
+            <Card.Body><IndexKey /></Card.Body>
           </Accordion.Collapse>
         </Card>
 
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="8">
-               Controlled components
+              Controlled components
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey="8">
             <Card.Body>
-            <Form/>
+              <Form />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -161,12 +202,12 @@ function App() {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="9">
-               Pure Component and using Memo for function component
+              Pure Component and using Memo for function component
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey="9">
             <Card.Body>
-            <ParentComp/>
+              <ParentComp />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -174,12 +215,12 @@ function App() {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="10">
-               Ref demo
+              Ref demo
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey="10">
             <Card.Body>
-            <RefDemo/>
+              <RefDemo />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -187,12 +228,12 @@ function App() {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="11">
-               Input Ref Class
+              Input Ref Class
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey="11">
             <Card.Body>
-            <FocusInput/>
+              <FocusInput />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -200,16 +241,16 @@ function App() {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="12">
-               Ref forwarding
+              Ref forwarding
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey="12">
             <Card.Body>
-              <FRParentInput/>
+              <FRParentInput />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
-        
+
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="13">
@@ -218,15 +259,15 @@ function App() {
           </Card.Header>
           <Accordion.Collapse eventKey="13">
             <Card.Body>
-                <ErrorBoundary>
-                <Hero heroName="Batman"/>
-                </ErrorBoundary>
-                <ErrorBoundary> 
-                <Hero heroName="Superman"/>
-                </ErrorBoundary>
-                <ErrorBoundary>
-                <Hero heroName="Wonder Woman"/>
-                </ErrorBoundary>
+              <ErrorBoundary>
+                <Hero heroName="Batman" />
+              </ErrorBoundary>
+              <ErrorBoundary>
+                <Hero heroName="Superman" />
+              </ErrorBoundary>
+              <ErrorBoundary>
+                <Hero heroName="Wonder Woman" />
+              </ErrorBoundary>
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -239,9 +280,9 @@ function App() {
           </Card.Header>
           <Accordion.Collapse eventKey="14">
             <Card.Body>
-                
-                <ClickCounter name='User Name'/>
-                <HoverCounter/>
+
+              <ClickCounter name='User Name' />
+              <HoverCounter />
 
             </Card.Body>
           </Accordion.Collapse>
@@ -255,31 +296,132 @@ function App() {
           </Card.Header>
           <Accordion.Collapse eventKey="15">
             <Card.Body>
-                
-                <User render={(isLoggedIn) => isLoggedIn ? 'Hello Will' : 'Hello guest'}/>
 
-                <CounterTwo>
-                  {
-                    (count, incrementCount)=>(
-                      <ClickCounterTwo count={count} incrementCount={incrementCount}/>
-                    )
-                  }
-                </CounterTwo>
+              <User render={(isLoggedIn) => isLoggedIn ? 'Hello Will' : 'Hello guest'} />
 
-                <CounterTwo>
-                  {
-                    (count, incrementCount)=>(
-                      <HoverCounter2 count={count} incrementCount={incrementCount}/>
-                    )
-                  }
-                </CounterTwo>
+              <CounterTwo>
+                {
+                  (count, incrementCount) => (
+                    <ClickCounterTwo count={count} incrementCount={incrementCount} />
+                  )
+                }
+              </CounterTwo>
+
+              <CounterTwo>
+                {
+                  (count, incrementCount) => (
+                    <HoverCounter2 count={count} incrementCount={incrementCount} />
+                  )
+                }
+              </CounterTwo>
 
             </Card.Body>
           </Accordion.Collapse>
         </Card>
+
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="16">
+              Context
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="16">
+            <Card.Body>
+                <p>
+                  Context provides a way to pass data through the component 
+                  tree without havint to pass props down manually at every level
+                </p>
+                <UserProvider value='NameOfUserHere'>
+
+                  <Consumer/>
+
+                </UserProvider>
+
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="17">
+              HTTP Get and HTTP Post using AXIOS
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="17">
+            <Card.Body>
+                
+                  <PostList/>  
+                
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="18">
+              State Hook
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="18">
+            <Card.Body>
+                <ClassCounter/>
+                <HookCounter/>
+                <HookCounterTwo/>
+                <HookCounterThree/>
+                <HookCounterFour/>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+
+
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="19">
+              Use Effect
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="19">
+            <Card.Body>
+                <UseEffectOne/>
+                <HookMouse/>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="20">
+              UseReduce and UseContext
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="20">
+            <Card.Body>
+              <CountContext.Provider value={{countState: count, countDispatch: dispatch}}>
+                Count - {count}      
+                <RedComponent1/>  
+                <RedComponent2/>  
+              </CountContext.Provider>        
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="20">
+              Data Fetching with useEffect and useState
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="20">
+            <Card.Body>  
+                <DataFetching1/>
+                <DataFetching2/>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+
       </Accordion>
 
-      <PortalDemo/>
+      <PortalDemo />
     </div>
   );
 }

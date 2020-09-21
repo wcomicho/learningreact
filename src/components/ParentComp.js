@@ -16,7 +16,7 @@ class ParentComp extends Component {
            this.setState({
                name: "Bruce"
            })
-       })
+       },10000)
    } 
   render() {
     console.log('************* Parent Component Render*************');
